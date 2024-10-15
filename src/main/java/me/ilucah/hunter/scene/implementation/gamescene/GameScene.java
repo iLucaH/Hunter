@@ -4,9 +4,7 @@ import me.ilucah.hunter.camera.GameCamera;
 import me.ilucah.hunter.entity.implementation.moving.Player;
 import me.ilucah.hunter.handler.Handler;
 import me.ilucah.hunter.scene.Scene;
-import me.ilucah.hunter.scene.implementation.gamescene.level.Level;
 import me.ilucah.hunter.scene.implementation.gamescene.level.LevelManager;
-import me.ilucah.hunter.scene.implementation.gamescene.level.implementation.TutorialLevel;
 
 import java.awt.*;
 
