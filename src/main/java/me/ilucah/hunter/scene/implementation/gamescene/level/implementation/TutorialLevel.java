@@ -57,7 +57,15 @@ public class TutorialLevel extends Level {
 
         scene.getPlayer().render(g);
 
-        g.setColor(Color.ORANGE);
-        g.drawString("Hearts: " + scene.getPlayer().getHearts(), width - 70, height - 30);
+        //g.setColor(Color.ORANGE);
+        //g.drawString("Hearts: " + scene.getPlayer().getHearts(), width - 70, height - 30);
+        for (int i = 0; i < scene.getPlayer().getMaxHealth(); i++) {
+            g.setColor(new Color(255, 0, 0));
+            if (scene.getPlayer().getHearts() > i) {
+                g.fillOval(width - 70 - (i * 20), height - 30, 10, 10);
+            } else {
+                g.drawOval(width - 70 - (i * 20), height - 30, 10, 10);
+            }
+        }
     }
 }
