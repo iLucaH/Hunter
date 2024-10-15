@@ -6,11 +6,16 @@ import java.awt.event.MouseMotionListener;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
 
-	private boolean leftPressed, rightPressed;
+	private boolean leftPressed, rightPressed, leftReleased, rightReleased;
 	private int mouseX, mouseY;
 	
 	public MouseManager(){
 		
+	}
+
+	public void tick() {
+		leftReleased = false;
+		rightReleased = false;
 	}
 	
 	// Getters
@@ -43,10 +48,14 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(e.getButton() == MouseEvent.BUTTON1)
+		if(e.getButton() == MouseEvent.BUTTON1) {
 			leftPressed = false;
-		else if(e.getButton() == MouseEvent.BUTTON3)
+			leftReleased = true;
+		}
+		else if(e.getButton() == MouseEvent.BUTTON3) {
 			rightPressed = false;
+			rightReleased = true;
+		}
 	}
 
 	@Override
@@ -79,4 +88,27 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 		
 	}
 
+    public boolean isLeftReleased() {
+        return leftReleased;
+    }
+
+    public boolean isRightReleased() {
+        return rightReleased;
+    }
+
+	public void setRightReleased(boolean rightReleased) {
+		this.rightReleased = rightReleased;
+	}
+
+	public void setLeftReleased(boolean leftReleased) {
+		this.leftReleased = leftReleased;
+	}
+
+	public void setRightPressed(boolean rightPressed) {
+		this.rightPressed = rightPressed;
+	}
+
+	public void setLeftPressed(boolean leftPressed) {
+		this.leftPressed = leftPressed;
+	}
 }

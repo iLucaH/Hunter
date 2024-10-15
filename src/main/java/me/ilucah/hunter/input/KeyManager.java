@@ -1,5 +1,7 @@
 package me.ilucah.hunter.input;
 
+import me.ilucah.hunter.scene.Scene;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

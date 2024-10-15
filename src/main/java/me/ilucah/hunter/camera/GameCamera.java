@@ -1,6 +1,9 @@
 package me.ilucah.hunter.camera;
 
+import me.ilucah.hunter.entity.Entity;
 import me.ilucah.hunter.handler.Handler;
+
+import java.util.List;
 
 public class GameCamera {
 
@@ -8,13 +11,23 @@ public class GameCamera {
 
     private int xOffset, yOffset;
 
+    private int cachedXOffset, cachedYOffset;
+
     public GameCamera(Handler handler) {
         this.handler = handler;
         xOffset = 0;
         yOffset = 0;
+        cachedXOffset = 0;
+        cachedYOffset = 0;
     }
 
-    public void tick() {
+    public void tick(List<Entity> entityList) {
+        for (Entity entity : entityList) {
+            entity.setX(entity.getX() + xOffset);
+            entity.setY(entity.getY() + yOffset);
+        }
+        cachedXOffset = xOffset;
+        cachedYOffset = yOffset;
         xOffset = 0;
         yOffset = 0;
     }
@@ -23,7 +36,7 @@ public class GameCamera {
         return xOffset;
     }
 
-    public int getyOffset() {
+    public int getYOffset() {
         return yOffset;
     }
 
@@ -43,4 +56,11 @@ public class GameCamera {
         yOffset -= amount;
     }
 
+    public int getCachedXOffset() {
+        return cachedXOffset;
+    }
+
+    public int getCachedYOffset() {
+        return cachedYOffset;
+    }
 }

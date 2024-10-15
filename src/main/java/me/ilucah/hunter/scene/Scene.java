@@ -23,7 +23,7 @@ public abstract class Scene {
 
     public Scene(Handler handler) {
         this.handler = handler;
-        this.width = handler.getHeight();
+        this.width = handler.getWidth();
         this.height = handler.getHeight();;
     }
 

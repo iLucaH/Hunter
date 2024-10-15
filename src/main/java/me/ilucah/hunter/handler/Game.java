@@ -1,7 +1,6 @@
 package me.ilucah.hunter.handler;
 
 import me.ilucah.hunter.display.Display;
-import me.ilucah.hunter.display.render.RenderFactory;
 import me.ilucah.hunter.input.KeyManager;
 import me.ilucah.hunter.input.MouseManager;
 import me.ilucah.hunter.scene.Scene;
@@ -68,8 +67,10 @@ public class Game implements Runnable {
         keyManager.tick();
 
         if (Scene.getScene() != null) {
-            RenderFactory.getThreadPool().submit(() -> Scene.getScene().tick());
+            Scene.getScene().tick();
         }
+
+        mouseManager.tick();
     }
 
     private void render() {
@@ -83,9 +84,7 @@ public class Game implements Runnable {
         g.clearRect(0, 0, width, height);
 
         if (Scene.getScene() != null) {
-            RenderFactory.getThreadPool().submit(() -> Scene.getScene().render(g));
-            RenderFactory.getThreadPool().submit(() -> RenderFactory.getRenders().forEachOrdered(ro -> ro.render().accept(g)));
-            RenderFactory.clear();
+            Scene.getScene().render(g);
         }
 
         bs.show();
